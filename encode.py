@@ -21,7 +21,7 @@ data_read = data.read()
 encodedBytes = base64.b64encode(data_read)
 encodedStr = str(encodedBytes, "utf-8") #converts Base64 to string from bytes
 
-parse = [encodedStr[i:i+48] for i in range(0, len(encodedStr), 48)] #breaks the base64 text file into 32 character chunks and passes to parse
+parse = [encodedStr[i:i+48] for i in range(0, len(encodedStr), 48)] #breaks the base64 text file into 48 character chunks and passes to parse
 
 ctr = 0
 for chunk in parse:
