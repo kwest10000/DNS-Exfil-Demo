@@ -13,7 +13,7 @@ dns.resolver.lifetime = 1
 dns.resolver.nameservers = "127.0.0.1"
 
 
-DOMAIN = "." + "dnshackc2.com"
+DOMAIN = "." + "h4xh4xh4x.com"
 DEMO = "TUNNEL" #Set to TUNNEL or DGA
 
 
