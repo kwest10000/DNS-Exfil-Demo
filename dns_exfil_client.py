@@ -17,7 +17,7 @@ resolver.lifetime = 1
 
 
 DOMAIN = "." + "h4xh4xh4x.com"
-DEMO = "DGA" #Set to TUNNEL or DGA
+DEMO = "TUNNEL" #Set to TUNNEL or DGA
 
 
 data = open('data.txt', 'rb') #open binary file in read mode

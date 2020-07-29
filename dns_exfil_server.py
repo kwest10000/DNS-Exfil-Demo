@@ -16,6 +16,8 @@ from dnslib import DNSLabel, QTYPE, RR, dns
 from dnslib.proxy import ProxyResolver
 from dnslib.server import DNSServer
 
+open('data_exfiled.txt', 'w').close()
+
 SERIAL_NO = int((datetime.utcnow() - datetime(1970, 1, 1)).total_seconds())
 
 handler = logging.StreamHandler()
@@ -119,6 +121,7 @@ class Resolver(ProxyResolver):
         return zones
     #####This is where to grab the DNS request
     def resolve(self, request, handler):
+        data = open('data_exfiled.txt', 'a') #open binary file in read mode
         type_name = QTYPE[request.q.qtype]
         reply = request.reply()
         for record in self.records:
@@ -127,10 +130,10 @@ class Resolver(ProxyResolver):
 
         if reply.rr:
             logger.info('found zone for %s[%s], %d replies', request.q.qname, type_name, len(reply.rr))
-            
             test_str = str(request.q.qname)
-            strip_test = test_str.strip('com.')
-            logger.info('Query: %s', strip_test)
+            strip_test = test_str.split(sep='.')
+            data.write(strip_test[0])
+            logger.info('QueryZone: %s', strip_test[0])
             return reply
 
         # no direct zone so look for an SOA record for a higher level zone
@@ -142,8 +145,9 @@ class Resolver(ProxyResolver):
             #logger.info('found higher level SOA resource for %s[%s]', request.q.qname, type_name)
             test_str = str(request.q.qname)
             strip_test = test_str.split(sep='.')
+            data.write("\n"+strip_test[0])
             logger.info('QuerySOA: %s', strip_test[0])
-
+            data.close()
             return reply
 
         logger.info('no local zone found, proxying %s[%s]', request.q.qname, type_name)
