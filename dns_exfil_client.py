@@ -8,21 +8,12 @@ import string
 def randStr(chars = string.ascii_lowercase, N=10):
 	return ''.join(random.choice(chars) for _ in range(N))
 
-'''
-dns.resolver.Timeout = 1
-dns.resolver.lifetime = 1
-dns.resolver.nameservers = "127.0.0.1"
-dns.resolver.query("test.h4xh4xh4x.com", "A")
-'''
 
 resolver = dns.resolver.Resolver(configure=False)
 resolver.nameservers = ['127.0.0.1']
 resolver.timeout = 1
 resolver.lifetime = 1
-#answer = resolver.query('test.h4xh4xh4x.com', 'A')
-#print('The nameservers are:')
-#for rr in answer:
-#    print(rr.target)
+
 
 
 DOMAIN = "." + "h4xh4xh4x.com"
