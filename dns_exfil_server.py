@@ -132,7 +132,8 @@ class Resolver(ProxyResolver):
             logger.info('found zone for %s[%s], %d replies', request.q.qname, type_name, len(reply.rr))
             test_str = str(request.q.qname)
             strip_test = test_str.split(sep='.')
-            data.write(strip_test[0])
+            data.write("\n"+strip_test[0])
+            data.close()
             logger.info('QueryZone: %s', strip_test[0])
             return reply
 
@@ -146,8 +147,8 @@ class Resolver(ProxyResolver):
             test_str = str(request.q.qname)
             strip_test = test_str.split(sep='.')
             data.write("\n"+strip_test[0])
-            logger.info('QuerySOA: %s', strip_test[0])
             data.close()
+            logger.info('QuerySOA: %s', strip_test[0])
             return reply
 
         logger.info('no local zone found, proxying %s[%s]', request.q.qname, type_name)
