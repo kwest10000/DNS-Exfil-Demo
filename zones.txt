@@ -5,15 +5,15 @@
 #     everything else: either a single string or json list if it starts with "["
 #     lines starting with white space are striped of white space (including "\n")
 #     and added to the previous line
-dnshackc2.com  A       1.2.3.4
-dnshackc2.com  CNAME   whatever.com
-dnshackc2.com  MX      ["whatever.com.", 5]
-dnshackc2.com  MX      ["mx2.whatever.com.", 10]
-dnshackc2.com  MX      ["mx3.whatever.com.", 20]
-dnshackc2.com  NS      ns1.whatever.com.
-dnshackc2.com  NS      ns2.whatever.com.
-dnshackc2.com  TXT     hello this is some text
-dnshackc2.com  SOA     ["ns1.dnshackc2.com", "dns.dnshackc2.com"]
+h4xh4xh4x.com  A       1.2.3.4
+h4xh4xh4x.com  CNAME   whatever.com
+h4xh4xh4x.com  MX      ["whatever.com.", 5]
+h4xh4xh4x.com  MX      ["mx2.whatever.com.", 10]
+h4xh4xh4x.com  MX      ["mx3.whatever.com.", 20]
+h4xh4xh4x.com  NS      ns1.whatever.com.
+h4xh4xh4x.com  NS      ns2.whatever.com.
+h4xh4xh4x.com  TXT     hello this is some text
+h4xh4xh4x.com  SOA     ["ns1.example.com", "dns.example.com"]
 # because the next record exceeds 255 in length dnserver will automatically
 # split it into a multipart record, the new lines here have no effect on that
 testing.com  TXT    one long value: IICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAg

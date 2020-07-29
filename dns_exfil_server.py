@@ -117,7 +117,7 @@ class Resolver(ProxyResolver):
                 raise RuntimeError(f'Error processing line ({e.__class__.__name__}: {e}) "{line.strip()}"') from e
         logger.info('%d zone resource records generated from zone file', len(zones))
         return zones
-
+    #####This is where to grab the DNS request
     def resolve(self, request, handler):
         type_name = QTYPE[request.q.qtype]
         reply = request.reply()
@@ -127,6 +127,10 @@ class Resolver(ProxyResolver):
 
         if reply.rr:
             logger.info('found zone for %s[%s], %d replies', request.q.qname, type_name, len(reply.rr))
+            
+            test_str = str(request.q.qname)
+            strip_test = test_str.strip('com.')
+            logger.info('Query: %s', strip_test)
             return reply
 
         # no direct zone so look for an SOA record for a higher level zone
@@ -135,7 +139,11 @@ class Resolver(ProxyResolver):
                 reply.add_answer(record.rr)
 
         if reply.rr:
-            logger.info('found higher level SOA resource for %s[%s]', request.q.qname, type_name)
+            #logger.info('found higher level SOA resource for %s[%s]', request.q.qname, type_name)
+            test_str = str(request.q.qname)
+            strip_test = test_str.split(sep='.')
+            logger.info('QuerySOA: %s', strip_test[0])
+
             return reply
 
         logger.info('no local zone found, proxying %s[%s]', request.q.qname, type_name)
